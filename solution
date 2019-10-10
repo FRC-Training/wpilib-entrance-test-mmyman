@@ -1,0 +1,322 @@
+import java.util.ArrayList;
+import java.util.Collections;
+
+import javax.swing.RepaintManager;
+public class ClientClass
+{
+    public static void main(String[] args)
+    {
+        Classes preCalc5 = new Classes ("Josh", "Moshe", 11, 2019, "Precalc-5", "Goldman", "High School", 70, "Math");
+        Classes usHistory4 = new Classes ("Josh", "Moshe", 11, 2019, "US History-4", "Cullen", "High School", 98, "Social Studies");
+        Classes science3 = new Classes ("Kelly", "Smith", 6, 2016, "Science-3", "Doe", "Middle School", 81, "Science");
+        Classes grade4 = new Classes ("Mark", "Levine", 4, 2008, "4th Grade", "Smith", "Elementary School", 100, "All");
+        Classes preCalc4 = new Classes ("George", "Pop", 12, 2018, "Precalc-4", "Goldman", "High School", 65, "Math");
+        Classes usHistory4_2 = new Classes ("George", "Pop", 11, 2017, "US History-4", "Cullen", "High School", 77, "Social Studies");
+        Classes grade4_2 = new Classes ("George", "Pop", 4, 2008, "4th Grade", "Smith", "Elementary School", 75, "All");
+        Classes science2 = new Classes ("Heather", "Wilson", 7, 2016, "Science-2", "Doe", "Middle School", 99, "Science");
+        Classes kindergarden = new Classes ("Heather", "Wilson", 0, 2010, "Kindergarden", "Smith", "Elementary School", 89, "All");
+        Classes preCalc5_2 = new Classes ("Tom", "Brokaw", 11, 2019, "Precalc-5", "Liasi", "High School", 90, "Math");
+        Classes preCalc4_2 = new Classes ("Isabelle", "Frank", 10, 2018, "Precalc-4", "Goldman", "High School", 83, "Math");
+        Classes algebra7 = new Classes ("Isabelle", "Frank", 9, 2017, "Algebra-7", "Goldman", "High School", 95, "Math");
+        Classes grade4_3 = new Classes ("Isabelle", "Frank", 4, 2012, "4th Grade", "Smith", "Elementary School", 100, "All");
+        ArrayList<Classes> arrli = new ArrayList<Classes>(13); 
+        ArrayList<String> teachers = new ArrayList<String>();
+        ArrayList<String> teachers2 = new ArrayList<String>();
+        ArrayList<String> students = new ArrayList<String>();
+        ArrayList<Integer> dates = new ArrayList<Integer>();
+        ArrayList<String> hsDepartments = new ArrayList<String>();
+        ArrayList<String> hsDepartments2 = new ArrayList<String>();
+        ArrayList<String> mathCourses = new ArrayList<String>();
+        ArrayList<String> mathCourses2 = new ArrayList<String>();
+        ArrayList<String> jMosheCourses = new ArrayList<String>();
+        ArrayList<String> hWilson = new ArrayList<String>();
+        ArrayList<Integer> hWilsonYear = new ArrayList<Integer>();
+        ArrayList<String> goldmanClasses = new ArrayList<String>();
+        ArrayList<String> goldmanClasses2 = new ArrayList<String>();
+        ArrayList<Integer> grade42008 = new ArrayList<Integer>();
+        ArrayList<Integer> preCalcGrades = new ArrayList<Integer>();
+        ArrayList<Integer> preCalcGrades2019 = new ArrayList<Integer>();
+        ArrayList<Integer> goldmanPrecalcGrades = new ArrayList<Integer>();
+
+
+        arrli.add(preCalc5);
+        arrli.add(usHistory4);
+        arrli.add(science3);
+        arrli.add(grade4);
+        arrli.add(preCalc4);
+        arrli.add(usHistory4_2);
+        arrli.add(grade4_2);
+        arrli.add(kindergarden);
+        arrli.add(science2);
+        arrli.add(preCalc5_2);
+        arrli.add(preCalc4_2);
+        arrli.add(algebra7);
+        arrli.add(grade4_3);
+//1
+        for (int i=0; i<13; i++) 
+        {
+            if(arrli.get(i).getSchool().equals("High School"))
+            {
+                teachers.add(arrli.get(i).getTeacher()); 
+            }
+        }
+        removeDupes(teachers, teachers2);
+        Collections.sort(teachers2);
+        System.out.println("These are the teachers in alphabetical order:");
+        System.out.println(teachers2);
+        System.out.println();
+//2
+        for (int i=0; i<13; i++) 
+        {
+            if(arrli.get(i).getSchool().equals("Middle School"))
+            {
+                students.add(arrli.get(i).getName()); 
+                dates.add(arrli.get(i).getDate()); 
+            }
+        }
+        Collections.sort(students);
+        System.out.println("These are the students from the Middle School in alphabetical and date order:");
+        for (int j=0; j<dates.size(); j++)
+        {
+            System.out.println(students.get(j)+ " "+ dates.get(j));
+        }
+//3
+        for (int i=0; i<13; i++) 
+        {
+            if(arrli.get(i).getSchool().equals("High School"))
+            {
+                hsDepartments.add(arrli.get(i).getDepartment()); 
+            }
+        }
+        removeDupes(hsDepartments, hsDepartments2);
+        System.out.println();
+        Collections.sort(hsDepartments2);
+        System.out.println("These are the departments from the High School in alphabetical order:");
+        System.out.println(hsDepartments2);
+//4
+         for (int i=0; i<13; i++) 
+        {
+            if(arrli.get(i).getDepartment().equals("Math"))
+            {
+                mathCourses.add(arrli.get(i).getCourse()); 
+            }
+        }
+        removeDupes(mathCourses, mathCourses2);
+        System.out.println();
+        Collections.sort(mathCourses2);
+        System.out.println("These are the math courses in alphabetical order:");
+        System.out.println(mathCourses2);
+//5
+        for (int i=0; i<13; i++) 
+        {
+            if(arrli.get(i).getName().equals("Moshe, Josh"))
+            {
+                jMosheCourses.add(arrli.get(i).getCourse()+" "+ arrli.get(i).getGrade()); 
+            }
+        }
+        System.out.println();
+        Collections.sort(jMosheCourses);
+        System.out.println("These are the courses Josh is taking in alphabetical order:");
+        System.out.println(jMosheCourses);
+//6
+        for (int i=0; i<13; i++) 
+        {
+            if(arrli.get(i).getName().equals("Wilson, Heather"))
+            {
+                hWilson.add(arrli.get(i).getCourse() + " " + arrli.get(i).getGrade() + " " + arrli.get(i).getDate()); 
+                hWilsonYear.add(arrli.get(i).getYear());
+            }
+        }
+        dateOrder(hWilsonYear);
+        for (int i=0; i<hWilson.size(); i++)
+        {
+            if(!hWilson.get(i).contains(Integer.toString(hWilsonYear.get(i))))
+            {
+                int j = 1;
+                String temp;
+                temp = hWilson.get(i);
+                hWilson.set(i,hWilson.get(j));
+                hWilson.set(j,temp);
+            }
+        }
+        System.out.println();
+        System.out.println("These are the courses Heather is taking in alphabetical and year order:");
+        for (int i=0; i<hWilson.size(); i++)
+        {
+            System.out.println(hWilson.get(i)+" "+hWilsonYear.get(i));
+        }
+//7     
+        for (int i=0; i<hWilson.size(); i++)
+        {   
+            if(hWilsonYear.get(i)>5)
+            {
+                hWilson.remove(i);
+                hWilsonYear.remove(i);
+            }
+            
+        }
+        System.out.println();
+        System.out.println("These are the courses Heather took in elementary school alphabetical and year order:");
+        for (int i=0; i<hWilson.size(); i++)
+        {
+            System.out.println(hWilson.get(i)+" "+hWilsonYear.get(i));
+        }
+//8
+        for (int i=0; i<13; i++) 
+        {
+            if(arrli.get(i).getTeacher().equals("Goldman"))
+            {
+                goldmanClasses.add(arrli.get(i).getCourse());
+            }
+        }
+        removeDupes(goldmanClasses, goldmanClasses2);
+        System.out.println();
+        System.out.println("These are the courses Mr Goldman teaches in aplhabetical order:");
+        for (int i=0; i<goldmanClasses2.size(); i++)
+        {
+            System.out.println(goldmanClasses2.get(i));
+        }
+//9
+        for (int i=0; i<13; i++) 
+        {
+            if(arrli.get(i).getDate()==(2008) && arrli.get(i).getCourse().equals("4th Grade"))
+            {
+                grade42008.add(arrli.get(i).getGrade());
+            }
+        }
+        getAvrg(grade42008);
+        System.out.println();
+        System.out.println("The average grade of 4th Graders in 2008 is "+ getAvrg(grade42008));
+//10
+        for (int i=0; i<13; i++) 
+        {
+            if(arrli.get(i).getCourse().equals("Precalc-5")||arrli.get(i).getCourse().equals("Precalc-4"))
+            {
+                preCalcGrades.add(arrli.get(i).getGrade());
+            }
+        }
+        dateOrder(preCalcGrades);
+        System.out.println();
+        System.out.println("The highest grade in Precalc "+ preCalcGrades.get(preCalcGrades.size()-1));
+//11
+        for (int i=0; i<13; i++) 
+        {
+            if(arrli.get(i).getDate()==(2019) && arrli.get(i).getCourse().equals("Precalc-5")||arrli.get(i).getCourse().equals("Precalc-4"))
+            {
+                preCalcGrades2019.add(arrli.get(i).getGrade());
+            }
+        }
+        System.out.println();
+        System.out.println("The average grade of Precalc in 2019 is "+ getAvrg(preCalcGrades2019));
+//12
+        for (int i=0; i<13; i++) 
+        {
+            if(arrli.get(i).getTeacher().equals("Goldman") && arrli.get(i).getCourse().equals("Precalc-5")||arrli.get(i).getCourse().equals("Precalc-4"))
+            {
+                goldmanPrecalcGrades.add(arrli.get(i).getGrade());
+            }
+        }
+        System.out.println();
+
+        System.out.println("The average grade of Precalc with Goldman is "+ getAvrg(goldmanPrecalcGrades));
+    }
+
+    public static void dateOrder( ArrayList<Integer> dates)
+    {
+        int i = 0;           
+        int temp;
+        for (int j=1; j<dates.size(); j++)
+        {
+            if(dates.get(i)>dates.get(j))
+            {
+                temp = dates.get(i);
+                dates.set(i,dates.get(j));
+                dates.set(j,temp);
+                i++;  
+            }
+            else
+            {
+                i++;
+            }
+            
+        }
+    }
+    public static double getAvrg(ArrayList<Integer> grades)
+    {
+        double holder = 0;
+        for (int i=0; i<grades.size(); i++)
+        {
+             holder += grades.get(i);
+        }
+        return holder = holder/grades.size();
+    }
+    public static void removeDupes (ArrayList<String> first, ArrayList<String> second)
+    {
+        for (int i=0; i<first.size(); i++) 
+        {
+            if(!second.contains(first.get(i)))
+            {
+                second.add(first.get(i));
+            }
+        }
+        Collections.sort(second);
+    }
+}
+
+public class Classes
+{
+    private String studentFirst;
+    private String studentLast;
+    private int year;
+    private int date;
+    private String course;
+    private String teacher;
+    private String school;
+    private int grade;
+    private String department;
+
+    public Classes(String f, String l, int y, int d, String c, String t, String s, int g, String dep)
+    {
+        studentFirst = f;
+        studentLast = l;
+        year = y;
+        date = d;
+        course = c;
+        teacher = t;
+        school = s;
+        grade = g;
+        department = dep;
+    }
+    public String getTeacher()
+    {
+        return teacher;
+    }
+    public String getSchool()
+    {
+        return school;
+    }
+    public String getDepartment()
+    {
+        return department;
+    }
+    public String getName()
+    {
+        return studentLast + ", "+ studentFirst;
+    }
+    public String getCourse()
+    {
+        return course;
+    }
+    public int getYear()
+    {
+        return year;
+    }
+    public int getDate()
+    {
+        return date;
+    }
+    public int getGrade()
+    {
+        return grade;
+    }
+}
